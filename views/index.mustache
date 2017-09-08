@@ -1,0 +1,20 @@
+<h1>FlipCards!</h1>
+<h4>Create a new Deck</h4>
+<div class="deckCreate">
+<form class="" action="/create" method="post">
+<input type="text" name="deck" value="" placeholder="DeckName">
+
+
+  
+<button type="submit" name="button">Create a Deck</button>
+</div>
+<div class = "deck-container">
+{{#decks}}
+<div class = "deck">
+<a href = "/{{id}}" >View</a>
+{{name}}
+</div>
+
+{{/decks}}
+</div>
+

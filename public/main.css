@@ -1,0 +1,31 @@
+body{
+	background-color: lightblue;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.deckCreate{
+	display: flex;
+	flex-direction: column;
+}
+.deck{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+background-color: lightyellow;
+height: 100px;
+width: 100px;
+margin: 25px;
+}
+.deck-container{
+	display: flex;
+	flex-direction: row;
+}
+.question{
+
+}
+.questions-container{
+	display: flex;
+	flex-direction: column;
+}

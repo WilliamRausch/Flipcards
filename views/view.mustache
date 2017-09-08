@@ -1,0 +1,22 @@
+<h1> deck view for {{#deck}} {{name}} </h1>
+
+
+<form class="" action="/{{id}}/create" method="post">
+<input type="text" name="question" value="" placeholder="Question">
+<input type="text" name="answer" value="" placeholder="Answer">
+
+  
+<button type="submit" name="button">Create Card</button>
+
+<a href = "{{id}}/startquiz"> start quiz</a>
+{{/deck}}
+<div class = questions-container>
+{{#deckCards}}
+<div class = "question">
+<a href = "{{deck}}/{{id}}/question"> Question: {{id}}</a>
+{{question}}
+{{answer}}
+</div>
+
+{{/deckCards}}
+</div>
