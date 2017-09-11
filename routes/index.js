@@ -1,16 +1,19 @@
 const express = require("express");
 const Card = require("../models/index").Card;
 const Deck = require("../models/index").Deck;
+const User = require("../models/index").User;
 const router = express.Router();
 const bcrypt = require("bcrypt");
-
+let username;
+let password;
+let name;
 let deckCards;
 let qCard;
 let qDeck;
 let index = 1;
 let counter = 0;
 let deckNum;
-
+const passport = require('passport');
 const isAuthenticated = function (req, res, next) {
   console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
@@ -63,7 +66,7 @@ router.post("/signup", function(req, res) {
     res.redirect('/signup')
   });
 });
-router.get("/", function(req, res){
+router.get("/user", function(req, res){
 	Deck.findAll().then(function(decks){
 
 	
@@ -71,7 +74,7 @@ router.get("/", function(req, res){
 })
 })
 
-router.post("/create", function(req,res){
+router.post("/user/create", function(req,res){
 
 	let newDeck = {
 		name: req.body.deck
@@ -80,10 +83,10 @@ router.post("/create", function(req,res){
     res.redirect('/')
   }).catch(function(error) {
     req.flash('error')
-    res.redirect('/')
+    res.redirect('/user')
   });
 })
-router.get("/:id", function(req,res){
+router.get("/user/:id", function(req,res){
 	Card.findAll({
 		where: {
 			deck: req.params.id
@@ -101,7 +104,7 @@ router.get("/:id", function(req,res){
 	res.render("view", {deck, deckCards})
 })
 })
-router.get("/:id/next", function(req,res){
+router.get("/user/:id/next", function(req,res){
 	Card.findAll({
 		where: {
 			deck: req.params.id
@@ -117,14 +120,14 @@ router.get("/:id/next", function(req,res){
 	}).then(function(deck){
 		console.log(deck.length);
 		if(index<10){
-	res.redirect(`/${req.params.id}/${index}/question`);
+	res.redirect(`/user/${req.params.id}/${index}/question`);
 }else{
 	index = 1;
-	res.redirect(`/${req.params.id}`);
+	res.redirect(`/user/${req.params.id}`);
 }
 })
 })
-router.post("/:id/create", function(req,res){
+router.post("/user/:id/create", function(req,res){
 	let newCard = {
 		question: req.body.question,
 		answer: req.body.answer,
@@ -137,10 +140,10 @@ router.post("/:id/create", function(req,res){
 		//created.setdeckId(req.params.id);
 		//card.setforeignKey(req.params.id);
 		
-		res.redirect(`/${req.params.id}`);
+		res.redirect(`/user/${req.params.id}`);
 	})
 })
-router.get("/:deckId/:cardId/question", function(req,res){
+router.get("/user/:deckId/:cardId/question", function(req,res){
 	index ++;
 
 	Card.findOne({
@@ -163,7 +166,7 @@ router.get("/:deckId/:cardId/question", function(req,res){
 	
 	
 })
-router.get("/:deckId/:cardId/answer", function(req,res){
+router.get("/user/:deckId/:cardId/answer", function(req,res){
 	Card.findOne({
 		where: {
 			id: req.params.cardId
@@ -185,7 +188,7 @@ router.get("/:deckId/:cardId/answer", function(req,res){
 	
 	
 })
-router.get("/:deckId/startquiz", function(req,res){
+router.get("/user/:deckId/startquiz", function(req,res){
 	index = 1;
 	console.log("quiz started");
 	deckNum = req.params.deckId;
@@ -196,7 +199,7 @@ router.get("/:deckId/startquiz", function(req,res){
 	}).then(function(cards){
 		 questions = cards;
 		 console.log(questions);
-		 res.redirect(`/${deckNum}/${index}/question`)
+		 res.redirect(`/user/${deckNum}/${index}/question`)
 	})
 	
 })
