@@ -5,9 +5,12 @@
 
 {{#qCard}}
 <h4>{{question}}</h4>
+<h5> QUESTION # {{questionNumber}} <h5>
+<h5> Deck ID {{deck}} <h5>
 
-<form class="" action="/user/{{deck}}/{{id}}/answer" method="get">
+<form class="" action="/user/{{deck}}/{{questionNumber}}/answer" method="get">
 <button type="submit" name="button">Flip</button>
+
 
 {{/qCard}}
 

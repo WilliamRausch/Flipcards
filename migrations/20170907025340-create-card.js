@@ -17,6 +17,9 @@ module.exports = {
       deck: {
         type: Sequelize.INTEGER
       },
+      questionNumber: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

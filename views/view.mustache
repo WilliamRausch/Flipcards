@@ -1,7 +1,8 @@
 <h1> deck view for {{#deck}} {{name}} </h1>
+<h2> {{numberOfQuestions}}</h2>
+{{id}}
 
-
-<form class="" action="/{{id}}/create" method="post">
+<form class="" action="/user/{{id}}/create" method="post">
 <input type="text" name="question" value="" placeholder="Question">
 <input type="text" name="answer" value="" placeholder="Answer">
 
@@ -13,9 +14,10 @@
 <div class = questions-container>
 {{#deckCards}}
 <div class = "question">
-<a href = "{{deck}}/{{id}}/question"> Question: {{id}}</a>
+<a href = "{{deck}}/{{id}}/question"> Question: {{questionNumber}}</a>
 {{question}}
 {{answer}}
+
 </div>
 
 {{/deckCards}}

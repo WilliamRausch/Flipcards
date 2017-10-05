@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var Card = sequelize.define('Card', {
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
-    deck: DataTypes.INTEGER
+    deck: DataTypes.INTEGER,
+    questionNumber: DataTypes.INTEGER,
   }, {
     classMethods: {
       associate: function(models) {

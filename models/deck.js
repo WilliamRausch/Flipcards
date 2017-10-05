@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Deck = sequelize.define('Deck', {
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    numberOfQuestions: DataTypes.INTEGER,
   }, {
     classMethods: {
       associate: function(models) {
